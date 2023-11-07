@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navigation from './(components)/Navigation';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -17,8 +21,12 @@ export default function RootLayout({
   return (
     <html lang="pl" suppressHydrationWarning={true}>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Navigation />
-        {children}
+        <div className="flex flex-col h-screen max-h-screen">
+          <Navigation />
+          <div className="flex-grow overflow-y-auto bg-page text-defeault-text">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
